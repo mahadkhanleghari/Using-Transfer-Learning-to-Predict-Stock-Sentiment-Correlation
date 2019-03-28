@@ -94,12 +94,7 @@ label_list = pre.instance_labels #Label list for the current file
             
             
      
-        
-
-    
-
-   
->>>>>>> 814b659e77e82d4be4858a862f1369bbad573d69
+ 
 
 
 
