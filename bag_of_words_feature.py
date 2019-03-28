@@ -47,7 +47,7 @@ class Bag_of_words_feature:
         
      # we check each word if it exists in either the positive words list or negative words list
      #if it exists in the positive words list, we increment the positive_words_count list by 1
-     #if it exists in the positive words list, we increment the negative_words_count list by 1
+     #if it exists in the negative words list, we increment the negative_words_count list by 1
          
             for doc in doc_list:   
                for word in doc:                
