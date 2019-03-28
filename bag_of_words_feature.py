@@ -1,11 +1,6 @@
 from pre_processing import Pre_Processing
 import collections
 
-
-
-
-
-
 class Bag_of_words_feature:
      def __init__(self):
         
@@ -68,13 +63,8 @@ class Bag_of_words_feature:
             return self.feature_list
     
             
-            
-        
+           
 #note that this feature is binary, where 1 indicates that it is positive, and 0 indicates that it is negative
-
-
-
-
 
 
 pos_pre=Pre_Processing("train_pos.txt")
