@@ -1,7 +1,12 @@
 import spacy
+<<<<<<< HEAD
 import numpy as np
 import pandas as pd
+=======
+from textblob import TextBlob                         #You have to download textblob
+>>>>>>> 814b659e77e82d4be4858a862f1369bbad573d69
 nlp = spacy.load("en_core_web_sm")
+
 
 class Pre_Processing:
 
@@ -11,16 +16,20 @@ class Pre_Processing:
         self.doc_instance_list = [] #list of every instance in Spacy doc form
         self.instance_labels = [] #1 for pos 0 for neg
 
+        
+
         """Method Calls Description
         
         1. extract_training calls ___clean_text__.
         2. __clean_text__ returns a refined list undoced_instance_list.
-        3. __spacy_tokenizer__ makes the doc_instance_list."""
+        3. __spacy_tokenizer__ makes the doc_instance_list. """
 
         #Method Calls
         self._extract_training_()
         self._spacy_docizer_()
         self._label_lister_()
+
+        
 
 
     def _extract_training_(self):
@@ -44,6 +53,8 @@ class Pre_Processing:
         for instance in self.undoced_instance_list:
             new = nlp(instance)
             self.doc_instance_list.append(new)
+            
+            
 
     def _label_lister_(self): #creates the label for the instances
         label_count = len(self.doc_instance_list)
@@ -63,7 +74,12 @@ class Pre_Processing:
         pandas_dataframe = pd.DataFrame(labels_list, feature_1, feature_2)
         return pandas_dataframe
 
-
+    
+        
+   
+        
+        
+            
 #main
 file = "train_pos.txt"
 pre = Pre_Processing(file)
@@ -71,6 +87,28 @@ doc_list = pre.doc_instance_list #Important: This is a list of doc type object.
 label_list = pre.instance_labels #Label list for the current file
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+     
+        
+
+    
+
+   
+>>>>>>> 814b659e77e82d4be4858a862f1369bbad573d69
 
 
 
