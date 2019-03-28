@@ -1,4 +1,6 @@
 import spacy
+import numpy as np
+import pandas as pd
 nlp = spacy.load("en_core_web_sm")
 
 class Pre_Processing:
@@ -7,6 +9,7 @@ class Pre_Processing:
         self.file_name = file_name
         self.undoced_instance_list = [] #List of all paragraphs in base form. (Not in Spacy Doc form)
         self.doc_instance_list = [] #list of every instance in Spacy doc form
+        self.instance_labels = [] #1 for pos 0 for neg
 
         """Method Calls Description
         
@@ -17,6 +20,7 @@ class Pre_Processing:
         #Method Calls
         self._extract_training_()
         self._spacy_docizer_()
+        self._label_lister_()
 
 
     def _extract_training_(self):
@@ -41,15 +45,32 @@ class Pre_Processing:
             new = nlp(instance)
             self.doc_instance_list.append(new)
 
+    def _label_lister_(self): #creates the label for the instances
+        label_count = len(self.doc_instance_list)
+        if self.file_name.endswith("neg.txt"):
+            value = 0
+        elif self.file_name.endswith("pos.txt"):
+            value = 1
+        label_list = []
+        for i in range(label_count):
+            label_list.append(value)
+        self.instance_labels = label_list
 
+    def data_merger(self, pos_labels, neg_labels, feature_1_neg, feature_1_pos, feature_2_neg, feature_2_pos):
+        labels_list = pos_labels + neg_labels
+        feature_1 = feature_1_pos + feature_1_neg
+        feature_2 = feature_2_pos + feature_2_neg
+        pandas_dataframe = pd.DataFrame(labels_list, feature_1, feature_2)
+        return pandas_dataframe
 
 
 #main
-file = "train_neg.txt"
+file = "train_pos.txt"
 pre = Pre_Processing(file)
 doc_list = pre.doc_instance_list #Important: This is a list of doc type object.
+label_list = pre.instance_labels #Label list for the current file
 
-print(doc_list)
+
 
 
 
