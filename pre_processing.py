@@ -62,19 +62,16 @@ class Pre_Processing:
 
 #Data Merger Function
 
-def data_merger(pos_labels, neg_labels, feature_1_neg, feature_1_pos, feature_2_neg, feature_2_pos):
+def data_merger(pos_labels, neg_labels, feature_1_neg, feature_1_pos, feature_2_neg, feature_2_pos,
+                feature_3_neg, feature_3_pos):
     labels_list = pos_labels + neg_labels
     feature_1 = feature_1_pos + feature_1_neg
     feature_2 = feature_2_pos + feature_2_neg
-    head_dict = {"Label": labels_list, "Bag of Words": feature_1, "Polarity": feature_2}
+    feature_3 = feature_3_pos + feature_3_neg
+    head_dict = {"Label": labels_list, "Bag of Words": feature_1, "Polarity": feature_2, "Vader Polarity": feature_3}
     pandas_dataframe = pd.DataFrame(head_dict)
     return pandas_dataframe
             
-
-    
-        
-   
-              
 
 #main
 file = "test_neg.txt"

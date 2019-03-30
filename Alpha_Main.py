@@ -5,8 +5,6 @@ import bag_of_words_feature
 import textblob_polarity_feature
 import vader_polarity_feature
 
-
-
 "Feature 1: Bag of Words"
 #Training
 
@@ -48,6 +46,7 @@ test_neg_2 = textblob_polarity_feature.TextBlob_Polarity().get_feature(test_neg_
 
 
 """Feature 3: Vader Polarity"""
+
 #Training
 
 training_pos_3 = vader_polarity_feature.Vader_polarity().get_feature(training_pos_list)
@@ -61,8 +60,9 @@ test_neg_3 = vader_polarity_feature.Vader_polarity().get_feature(test_neg_list)
 """Data Merger"""
 
 training_data = pre_processing.data_merger(training_pos_labels, training_neg_labels, training_neg_1, training_pos_1
-                                           ,training_neg_2, training_pos_2)
-test_data = pre_processing.data_merger(test_pos_labels, test_neg_labels, test_neg_1, test_pos_1, test_neg_2, test_pos_2)
+                                           ,training_neg_2, training_pos_2, training_neg_3, training_pos_3)
+test_data = pre_processing.data_merger(test_pos_labels, test_neg_labels, test_neg_1, test_pos_1, test_neg_2, test_pos_2
+                                       , test_neg_3, test_pos_3)
 
 """Decision Tree"""
 
