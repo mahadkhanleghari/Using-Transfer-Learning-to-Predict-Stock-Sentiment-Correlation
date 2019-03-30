@@ -1,9 +1,9 @@
 from pre_processing import Pre_Processing
 from textblob import TextBlob                         #You have to download textblob
-import collections
 
 
-class Polarity_feature:
+
+class TextBlob_Polarity:
      def __init__(self):
     
         self.feature_list=[]            #list of features that will be returned
