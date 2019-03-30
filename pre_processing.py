@@ -46,8 +46,6 @@ class Pre_Processing:
         for instance in self.undoced_instance_list:
             new = nlp(instance)
             self.doc_instance_list.append(new)
-            
-            
 
     def _label_lister_(self): #creates the label for the instances
         label_count = len(self.doc_instance_list)
@@ -61,6 +59,7 @@ class Pre_Processing:
         self.instance_labels = label_list
 
 
+
 #Data Merger Function
 
 def data_merger(pos_labels, neg_labels, feature_1_neg, feature_1_pos, feature_2_neg, feature_2_pos):
@@ -71,12 +70,32 @@ def data_merger(pos_labels, neg_labels, feature_1_neg, feature_1_pos, feature_2_
     pandas_dataframe = pd.DataFrame(head_dict)
     return pandas_dataframe
             
+
+    
+        
+   
+              
+
 #main
 file = "test_neg.txt"
 pre = Pre_Processing(file)
 doc_list = pre.doc_instance_list #Important: This is a list of doc type object.
 label_list = pre.instance_labels #Label list for the current file
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
 
 
 
