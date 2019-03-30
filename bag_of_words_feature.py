@@ -1,11 +1,6 @@
 from pre_processing import Pre_Processing
 import collections
 
-
-
-
-
-
 class Bag_of_words_feature:
      def __init__(self):
         
@@ -67,30 +62,10 @@ class Bag_of_words_feature:
             
             return self.feature_list
     
-            
-            
-        
+
 #note that this feature is binary, where 1 indicates that it is positive, and 0 indicates that it is negative
 
 
-
-
-
-
-pos_pre=Pre_Processing("train_pos.txt")
-pos_doc_list = pos_pre.doc_instance_list
-
-
-pos_features=Bag_of_words_feature().get_feature(pos_doc_list)
-
-
-neg_pre=Pre_Processing("train_neg.txt")
-neg_doc_list =neg_pre.doc_instance_list
-
-neg_features=Bag_of_words_feature().get_feature(neg_doc_list)
-
-print(collections.Counter(neg_features))
-print(collections.Counter(pos_features))
 
 
 
