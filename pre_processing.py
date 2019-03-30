@@ -1,10 +1,6 @@
 import spacy
-<<<<<<< HEAD
 import numpy as np
 import pandas as pd
-=======
-from textblob import TextBlob                         #You have to download textblob
->>>>>>> 814b659e77e82d4be4858a862f1369bbad573d69
 nlp = spacy.load("en_core_web_sm")
 
 
@@ -28,9 +24,6 @@ class Pre_Processing:
         self._extract_training_()
         self._spacy_docizer_()
         self._label_lister_()
-
-        
-
 
     def _extract_training_(self):
         with open(self.file_name, "r") as training_file:
@@ -67,48 +60,24 @@ class Pre_Processing:
             label_list.append(value)
         self.instance_labels = label_list
 
-    def data_merger(self, pos_labels, neg_labels, feature_1_neg, feature_1_pos, feature_2_neg, feature_2_pos):
-        labels_list = pos_labels + neg_labels
-        feature_1 = feature_1_pos + feature_1_neg
-        feature_2 = feature_2_pos + feature_2_neg
-        pandas_dataframe = pd.DataFrame(labels_list, feature_1, feature_2)
-        return pandas_dataframe
 
-    
-        
-   
-        
-        
+#Data Merger Function
+
+def data_merger(pos_labels, neg_labels, feature_1_neg, feature_1_pos, feature_2_neg, feature_2_pos):
+    labels_list = pos_labels + neg_labels
+    feature_1 = feature_1_pos + feature_1_neg
+    feature_2 = feature_2_pos + feature_2_neg
+    head_dict = {"Label": labels_list, "Bag of Words": feature_1, "Polarity": feature_2}
+    pandas_dataframe = pd.DataFrame(head_dict)
+    return pandas_dataframe
             
 #main
-file = "train_pos.txt"
+file = "test_neg.txt"
 pre = Pre_Processing(file)
 doc_list = pre.doc_instance_list #Important: This is a list of doc type object.
 label_list = pre.instance_labels #Label list for the current file
 
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-            
-            
-     
-        
-
-    
-
-   
->>>>>>> 814b659e77e82d4be4858a862f1369bbad573d69
 
 
 
