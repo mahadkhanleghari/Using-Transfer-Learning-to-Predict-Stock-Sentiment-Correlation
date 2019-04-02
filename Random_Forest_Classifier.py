@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 from sklearn import tree
 from sklearn import preprocessing
 
-class Decision_Tree:
+class Random_Forest:
 
     def __init__(self, training_data, test_data):
         self.training_data = training_data #pandas data frame
