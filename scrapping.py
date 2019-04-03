@@ -128,18 +128,14 @@ class WebScrapper:
                     f.write("%s\n" % para)
 
 
-def main():
 
-    financialpost = 'https://business.financialpost.com/page/1?s='
-    #bloomberg = 'https://www.bloomberg.com/search?query=apple+inc&page=1'
+#main
 
-    obj1 = WebScrapper(financialpost, '2019-03-26', 'apple', 'financialpost')
-    #obj2 = WebScrapper(bloomberg, '2019-03-26', 'apple', 'bloomberg')
+test = WebScrapper('https://business.financialpost.com/page/1?s=', '2019-03-23', "apple", "financialpost")
 
 
-if __name__ == "__main__":
-    main()
-    # main(sys.argv)
+
+
 
 
 

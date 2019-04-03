@@ -23,7 +23,8 @@ class Pre_Processing:
         #Method Calls
         self._extract_training_()
         self._spacy_docizer_()
-        self._label_lister_()
+        if file_name.endswith("neg.txt") or file_name.endswith("pos.txt"):
+            self._label_lister_()
 
     def _extract_training_(self):
         with open(self.file_name, "r") as training_file:
@@ -71,13 +72,19 @@ def data_merger(pos_labels, neg_labels, feature_1_neg, feature_1_pos, feature_2_
     head_dict = {"Label": labels_list, "Bag of Words": feature_1, "Polarity": feature_2, "Vader Polarity": feature_3}
     pandas_dataframe = pd.DataFrame(head_dict)
     return pandas_dataframe
+
+def article_merger(feature_1, feature_2, feature_3):
+    head_dict = {"Bag of Words": feature_1, "Polarity": feature_2, "Vader Polarity": feature_3}
+    pandas_dataframe = pd.DataFrame(head_dict)
+    return pandas_dataframe
+
+
             
 
 #main
-file = "test_neg.txt"
-pre = Pre_Processing(file)
-doc_list = pre.doc_instance_list #Important: This is a list of doc type object.
-label_list = pre.instance_labels #Label list for the current file
+
+
+
 
 
 

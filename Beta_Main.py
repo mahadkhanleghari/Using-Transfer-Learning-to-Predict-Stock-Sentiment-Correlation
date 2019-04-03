@@ -4,6 +4,24 @@ import decision_tree_classifier
 import bag_of_words_feature
 import textblob_polarity_feature
 import vader_polarity_feature
+import scrapping
+import file_creator
+import extract_stocks
+
+"""Input"""
+
+news_name = 'financialpost'
+news_link = 'https://business.financialpost.com/page/1?s='
+date = '2019-03-25'
+company_name = 'apple'
+company_ticker = "AAPL"
+news_result = scrapping.WebScrapper(news_link, date, company_name, news_name)
+
+"""News Pre-Processing"""
+
+news_file = file_creator.file_creator(company_name, date)
+news_initiation = pre_processing.Pre_Processing(news_file)
+news_list = news_initiation.doc_instance_list
 
 "Feature 1: Bag of Words"
 #Training
@@ -21,15 +39,8 @@ training_neg_1 = bag_of_words_feature.Bag_of_words_feature().get_feature(trainin
 
 #Test
 
-test_pos = pre_processing.Pre_Processing("test_pos.txt")
-test_pos_list = test_pos.doc_instance_list
-test_pos_labels = test_pos.instance_labels
-test_pos_1 = bag_of_words_feature.Bag_of_words_feature().get_feature(test_pos_list)
+article_1 = bag_of_words_feature.Bag_of_words_feature().get_feature(news_list)
 
-test_neg = pre_processing.Pre_Processing("test_neg.txt")
-test_neg_list = test_neg.doc_instance_list
-test_neg_labels = test_neg.instance_labels
-test_neg_1 = bag_of_words_feature.Bag_of_words_feature().get_feature(test_neg_list)
 
 """Feature 2: TextBlob Polarity"""
 
@@ -40,9 +51,7 @@ training_neg_2 = textblob_polarity_feature.TextBlob_Polarity().get_feature(train
 
 #Test
 
-test_pos_2 = textblob_polarity_feature.TextBlob_Polarity().get_feature(test_pos_list)
-test_neg_2 = textblob_polarity_feature.TextBlob_Polarity().get_feature(test_neg_list)
-
+article_2 = textblob_polarity_feature.TextBlob_Polarity().get_feature(news_list)
 
 
 """Feature 3: Vader Polarity"""
@@ -54,22 +63,30 @@ training_neg_3 = vader_polarity_feature.Vader_polarity().get_feature(training_ne
 
 #Test
 
-test_pos_3 = vader_polarity_feature.Vader_polarity().get_feature(test_pos_list)
-test_neg_3 = vader_polarity_feature.Vader_polarity().get_feature(test_neg_list)
+article_3 = vader_polarity_feature.Vader_polarity().get_feature(news_list)
+
 
 """Data Merger"""
 
 training_data = pre_processing.data_merger(training_pos_labels, training_neg_labels, training_neg_1, training_pos_1
                                            ,training_neg_2, training_pos_2, training_neg_3, training_pos_3)
-test_data = pre_processing.data_merger(test_pos_labels, test_neg_labels, test_neg_1, test_pos_1, test_neg_2, test_pos_2
-                                       , test_neg_3, test_pos_3)
+test_data = pre_processing.article_merger(article_1, article_2, article_3)
 
 """Decision Tree"""
 
 decision_tree = decision_tree_classifier.Decision_Tree(training_data, test_data)
-accuracy = decision_tree.classifier()
+pos_degree = decision_tree.article_classifier()
 
-print(accuracy)
+print("Positive Degree of Articles for the day is: ",pos_degree)
+
+"Stock Price Change"
+
+change = extract_stocks.stock_change_day(company_ticker, date)
+
+print("Stock Price Fluctuation for the Day:", change)
+
+
+
 
 
 

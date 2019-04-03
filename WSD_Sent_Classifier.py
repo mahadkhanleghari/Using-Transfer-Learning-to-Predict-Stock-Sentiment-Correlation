@@ -21,18 +21,6 @@ class WSD_Sent_Classifier:
             self.neg_feature_list.append(neg)
 
 
-
-
-
-
-
-
-
-
-
-
-
-    
             
 #just like bag of words, sent_classifier classifies the overall sentiment of the text but it takes sentences 
 #as inputs and hence sequence is preserved.

@@ -5,6 +5,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from sklearn import tree
 from sklearn import preprocessing
+from collections import Counter
 
 class Decision_Tree:
 
@@ -14,9 +15,8 @@ class Decision_Tree:
         self.accuracy = 0
 
         #Method
-        self._classifier_()
 
-    def _classifier_(self):
+    def classifier(self):
         training = self.training_data.values[:, 1:len(self.training_data.columns)]
         training_label = self.training_data.values[:, 0]
         test = self.test_data.values[:, 1:len(self.test_data.columns)]
@@ -24,6 +24,24 @@ class Decision_Tree:
         entropy = DecisionTreeClassifier(criterion= "entropy")
         entropy.fit(training, training_label)
         test_predict = entropy.predict(test)
-        self.accuracy = accuracy_score(test_label, test_predict)
+        accuracy = accuracy_score(test_label, test_predict)
+        return accuracy
+
+    def article_classifier(self):
+        training = self.training_data.values[:, 1:len(self.training_data.columns)]
+        training_label = self.training_data.values[:, 0]
+        test = self.test_data.values[:, 0:len(self.test_data.columns)]
+        entropy = DecisionTreeClassifier(criterion="entropy")
+        entropy.fit(training, training_label)
+        test_predict = entropy.predict(test)
+        total = len(test_predict)
+        polarity_freq = Counter(test_predict)
+        pos_val = polarity_freq[1]
+        neg_val = polarity_freq[0]
+        result = pos_val/total
+        return result
+
+
+
 
 
