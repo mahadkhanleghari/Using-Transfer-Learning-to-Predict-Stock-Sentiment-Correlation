@@ -7,6 +7,9 @@ verify_ssl = true
 
 [packages]
 vadersentiment = "*"
+sentiment-classifier = "*"
+nltk = "*"
+bs4 = "*"
 
 [requires]
 python_version = "3.7"
