@@ -1,10 +1,6 @@
 from pre_processing import Pre_Processing
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-
-
-
-
 class Vader_polarity:
      def __init__(self):
     
