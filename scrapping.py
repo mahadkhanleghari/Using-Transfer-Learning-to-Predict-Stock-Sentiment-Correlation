@@ -1,8 +1,8 @@
 import os
 import requests
 from bs4 import BeautifulSoup
-import datetime
 import re
+
 
 class WebScrapper:
 
@@ -29,6 +29,7 @@ class WebScrapper:
 
 
     def __createFolder__(self, directory):
+
         try:
             if not os.path.exists(directory):
                 os.makedirs(directory)
@@ -131,10 +132,6 @@ def main():
 
     financialpost = 'https://business.financialpost.com/page/1?s='
     #bloomberg = 'https://www.bloomberg.com/search?query=apple+inc&page=1'
-
-    # now = datetime.datetime.now()
-    # date = now.strftime("%Y-%m-%d")
-    # print(now.strftime("%b-%d-%Y"))
 
     obj1 = WebScrapper(financialpost, '2019-03-26', 'apple', 'financialpost')
     #obj2 = WebScrapper(bloomberg, '2019-03-26', 'apple', 'bloomberg')
