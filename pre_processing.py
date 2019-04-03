@@ -1,5 +1,8 @@
 import spacy
+import numpy as np
+import pandas as pd
 nlp = spacy.load("en_core_web_sm")
+
 
 class Pre_Processing:
 
@@ -7,17 +10,20 @@ class Pre_Processing:
         self.file_name = file_name
         self.undoced_instance_list = [] #List of all paragraphs in base form. (Not in Spacy Doc form)
         self.doc_instance_list = [] #list of every instance in Spacy doc form
+        self.instance_labels = [] #1 for pos 0 for neg
+
+        
 
         """Method Calls Description
         
         1. extract_training calls ___clean_text__.
         2. __clean_text__ returns a refined list undoced_instance_list.
-        3. __spacy_tokenizer__ makes the doc_instance_list."""
+        3. __spacy_tokenizer__ makes the doc_instance_list. """
 
         #Method Calls
         self._extract_training_()
         self._spacy_docizer_()
-
+        self._label_lister_()
 
     def _extract_training_(self):
         with open(self.file_name, "r") as training_file:
@@ -41,15 +47,53 @@ class Pre_Processing:
             new = nlp(instance)
             self.doc_instance_list.append(new)
 
+    def _label_lister_(self): #creates the label for the instances
+        label_count = len(self.doc_instance_list)
+        if self.file_name.endswith("neg.txt"):
+            value = 0
+        elif self.file_name.endswith("pos.txt"):
+            value = 1
+        label_list = []
+        for i in range(label_count):
+            label_list.append(value)
+        self.instance_labels = label_list
 
 
+
+#Data Merger Function
+
+def data_merger(pos_labels, neg_labels, feature_1_neg, feature_1_pos, feature_2_neg, feature_2_pos,
+                feature_3_neg, feature_3_pos):
+    labels_list = pos_labels + neg_labels
+    feature_1 = feature_1_pos + feature_1_neg
+    feature_2 = feature_2_pos + feature_2_neg
+    feature_3 = feature_3_pos + feature_3_neg
+    head_dict = {"Label": labels_list, "Bag of Words": feature_1, "Polarity": feature_2, "Vader Polarity": feature_3}
+    pandas_dataframe = pd.DataFrame(head_dict)
+    return pandas_dataframe
+            
 
 #main
-file = "train_neg.txt"
+file = "test_neg.txt"
 pre = Pre_Processing(file)
 doc_list = pre.doc_instance_list #Important: This is a list of doc type object.
+label_list = pre.instance_labels #Label list for the current file
 
-print(doc_list)
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
 
 
 
