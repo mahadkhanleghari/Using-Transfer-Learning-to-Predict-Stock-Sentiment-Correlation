@@ -3,7 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 import re
-from csv import writer
 
 class WebScrapper:
 
