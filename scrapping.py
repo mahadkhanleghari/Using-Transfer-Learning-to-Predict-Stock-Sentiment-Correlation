@@ -12,6 +12,7 @@ class WebScrapper:
         self.punctuations = '''!()-[]{};:'"\,.?@#$%^&*_~'''
         self.nextpage = False
         self.store_company_name = ''
+        self.store_article_date = ''
         self.store_date = ''
         self.name_of_folder = ''
         self.links_by_finincial_post = []
@@ -21,6 +22,7 @@ class WebScrapper:
 
 
         if blogname == 'financialpost':
+            self.store_article_date = date
             self.__scrap_news_from_financial_post__(weblink, companyname, date)
             self.__scrap_financial_post_blog__()
         elif blogname == 'bloomberg':
@@ -104,7 +106,7 @@ class WebScrapper:
             self.nextpage = True
             self.__scrap_news_from_financial_post__(link, companyname, articledate)
         else:
-            self.name_of_folder = './' + companyname + '-' + self.store_date + '/'
+            self.name_of_folder = './' + companyname + '-' + self.store_article_date + '/'
             self.__createFolder__(self.name_of_folder)
             self.store_company_name = ''
             self.nextpage = False
@@ -131,7 +133,7 @@ class WebScrapper:
 
 #main
 
-test = WebScrapper('https://business.financialpost.com/page/1?s=', '2019-03-23', "apple", "financialpost")
+test = WebScrapper('https://business.financialpost.com/page/1?s=', '2019-03-26', "apple", "financialpost")
 
 
 
