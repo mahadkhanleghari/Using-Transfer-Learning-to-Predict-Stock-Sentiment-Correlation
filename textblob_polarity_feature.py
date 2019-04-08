@@ -1,8 +1,6 @@
 from pre_processing import Pre_Processing
 from textblob import TextBlob                         #You have to download textblob
 
-
-
 class TextBlob_Polarity:
      def __init__(self):
     
@@ -19,6 +17,18 @@ class TextBlob_Polarity:
                     self.feature_list.append(0)
             
             return self.feature_list
+
+     def get_polarity(self, headlines_list):
+         headlines = []
+         for headline in headlines_list:
+             refined = TextBlob(headline)
+             polarity = refined.sentiment.polarity
+             headlines.append(polarity)
+         average = sum(headlines)/len(headlines)
+         return average
+
+
+
     
 
 

@@ -4,7 +4,7 @@ import decision_tree_classifier
 import bag_of_words_feature
 import textblob_polarity_feature
 import vader_polarity_feature
-import scrapping
+import Optional_scrapping
 import file_creator
 import extract_stocks
 
@@ -15,7 +15,7 @@ news_link = 'https://business.financialpost.com/page/1?s='
 date = '2019-03-25'
 company_name = 'apple'
 company_ticker = "AAPL"
-news_result = scrapping.WebScrapper(news_link, date, company_name, news_name)
+news_result = Optional_scrapping.WebScrapper(news_link, date, company_name, news_name)
 
 """News Pre-Processing"""
 

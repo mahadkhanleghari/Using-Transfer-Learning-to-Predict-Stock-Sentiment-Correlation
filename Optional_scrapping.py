@@ -133,7 +133,7 @@ class WebScrapper:
 
 #main
 
-test = WebScrapper('https://business.financialpost.com/page/1?s=', '2019-03-26', "apple", "financialpost")
+
 
 
 

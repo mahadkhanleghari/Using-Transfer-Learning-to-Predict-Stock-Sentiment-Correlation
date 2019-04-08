@@ -52,14 +52,14 @@ class Bag_of_words_feature:
                     self.positive_words_count.append(1)
             
      #after getting the counts for each word, we calculate the sum of each count. if count of positive >count of negative, then it is positive
-               if sum(self.positive_words_count)>sum(self.negative_words_count):
-                self.feature_list.append(1)
+               if sum(self.positive_words_count) > sum(self.negative_words_count):
+                   self.feature_list.append(1)
                else:
-                self.feature_list.append(0)
-                
-                self.positive_words_count.clear()
-                self.negative_words_count.clear()
-            
+                   self.feature_list.append(0)
+
+                   self.positive_words_count.clear()
+                   self.negative_words_count.clear()
+
             return self.feature_list
     
 
