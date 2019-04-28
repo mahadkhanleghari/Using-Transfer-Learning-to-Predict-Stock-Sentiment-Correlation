@@ -26,7 +26,7 @@ IMDB Movie Reviews Data Set (Select Few)
 8. Textblob Polarity Feature
 9. Bag of Words Feature
 10. Vader Feature
-11. File Creator: Since the training data is in separate files, it is used to concatenate all of the training or test data depending on the input. Use this separately from all the other modules or files.
+11. File Creator: Since the training data is in separate files, it is used to concatenate all of the training or test data depending on the input. Use this separately from all the other modules or files. But since the test_neg and the train_neg and the other files in the same format are uploaded, no need to run this.
 12. Positive Words: Used for bag of words
 13. Negative Words: Used for bag of words
 14. Optional: Multiple Polarities
