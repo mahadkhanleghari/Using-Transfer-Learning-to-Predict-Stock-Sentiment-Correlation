@@ -1,0 +1,10 @@
+Packages Needed:
+
+1. Numpy
+2. Pandas
+3. IEX Api
+4. NewsPaper
+5. Beautiful Soup
+6. TextBlob
+7. Spacy
+8. Vader

@@ -10,6 +10,10 @@ vadersentiment = "*"
 sentiment-classifier = "*"
 nltk = "*"
 bs4 = "*"
+scrapy = "*"
+news-please = "*"
+urllib3 = "*"
+newspaper3k = "*"
 
 [requires]
 python_version = "3.7"
